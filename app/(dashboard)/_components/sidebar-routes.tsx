@@ -7,8 +7,11 @@ import { Compass, Layout, MessageCircle,
   Crown,
   School,
   SearchCheck,
-  HelpCircle, } from "lucide-react";
+  HelpCircle,
+  List,
+  BarChart, } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
+import { usePathname } from "next/navigation";
 
 
 const guestRoutes=[
@@ -39,7 +42,7 @@ const guestRoutes=[
 
   { icon: GraduationCap, 
     label: "Teacher Mode", 
-    href: "/teachermode" },
+    href: "/teacher/courses" },
   { icon: HelpCircle,
      label: "Support",
       href: "/support" },
@@ -49,10 +52,32 @@ const guestRoutes=[
     href: "/premium",
   },
   
+];
+const teacherRoutes=[
+  {
+    icon: List,
+    label: "Courses",
+   href: "/teacher/courses",
+},
+{
+    icon: BarChart,
+    label: "Analytics",
+    href: "/teacher/analytics",
+},
+ {
+    icon: Award,
+    label: "Result Grading",
+    href: "/teacher/resultgrading",
+  },
 ]
 
+
 export const SidebarRoutes=()=>{
-    const routes=guestRoutes;
+
+
+  const pathname=usePathname();
+  const isTeacherPage=pathname?.includes("/teacher");
+    const routes=isTeacherPage ? teacherRoutes:  guestRoutes;
     return(
         <div className="flex flex-col w-full">
            {routes.map((route)=>(
