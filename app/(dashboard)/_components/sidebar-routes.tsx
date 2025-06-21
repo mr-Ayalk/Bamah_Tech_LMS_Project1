@@ -5,6 +5,8 @@ import { Compass, Layout, MessageCircle,
   Award,
   Trophy,
   Crown,
+  School,
+  SearchCheck,
   HelpCircle, } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
@@ -23,16 +25,21 @@ const guestRoutes=[
 { icon: MessageCircle,
      label: "Chat", 
      href: "/chat" },
+      { icon: SearchCheck,
+        label: "Exam Results", 
+        href: "/results" },
      {
     icon: Award,
     label: "Certifications",
     href: "/certifications",
   },
   { icon: Trophy,
-     label: "Achievements", href: "/achievements" },
-       { icon: GraduationCap, 
+     label: "Achievements",
+      href: "/achievements" },
+
+  { icon: GraduationCap, 
     label: "Teacher Mode", 
-    href: "/teacher" },
+    href: "/teachermode" },
   { icon: HelpCircle,
      label: "Support",
       href: "/support" },
