@@ -41,7 +41,6 @@ const CreatePage = () => {
     try {
       const response = await axios.post("/api/courses", values);
       router.push(`/teacher/courses/${response.data.id}`);
-      
       toast.success("Course created");
     } catch {
       toast.error("Something went wrong");
@@ -86,12 +85,10 @@ const CreatePage = () => {
                 <Button type="button" variant="ghost">
                   Cancel
                 </Button>
-              </Link >
-              
+              </Link>
               <Button type="submit" disabled={!isValid || isSubmitting}>
                 Continue
               </Button>
-              
             </div>
           </form>
         </Form>
