@@ -3,7 +3,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
    '/test(.*)',       // ✅ this makes /test and its subroutes public
-
+'/api/uploadthing(.*)',
 
 ])
 

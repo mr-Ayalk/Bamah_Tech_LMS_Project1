@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 @import "tw-animate-css";
 html,
@@ -124,3 +125,28 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+
+@layer components {
+  .uploadthing__button {
+    @apply bg-indigo-600 text-black px-4 py-2 rounded mt-4 text-sm hover:bg-indigo-700 transition;
+  }
+
+  .uploadthing__button[data-state="uploading"],
+  .uploadthing__button[data-state="disabled"] {
+    @apply bg-indigo-300 cursor-not-allowed;
+  }
+
+  [data-ut-element="button"]::after {
+    color:black;
+    background-color: red; /* optional progress effect */
+  }
+}
+
+
+
+
+
+
+
+

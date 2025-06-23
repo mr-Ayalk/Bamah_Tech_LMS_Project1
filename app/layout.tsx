@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+// import "@uploadthing/react/styles.css";
+
 import "./globals.css";
+// app/layout.tsx or app/page.tsx
+
+
+
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
