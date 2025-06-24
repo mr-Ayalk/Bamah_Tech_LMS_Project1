@@ -12,6 +12,7 @@ import {
 } from '@clerk/nextjs'
 import Header from "@/components/header/header";
 import { ToastProvider } from "@/components/providers/toaster-provider";
+import { ConfettiProvider } from "@/components/providers/confetti-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ConfettiProvider/>
        <ToastProvider/>
         {children}
       </body>
