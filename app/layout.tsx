@@ -41,6 +41,7 @@ export default function RootLayout({
       >
         <ConfettiProvider/>
        <ToastProvider/>
+       
         {children}
       </body>
     </html>
