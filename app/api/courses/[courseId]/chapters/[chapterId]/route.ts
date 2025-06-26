@@ -208,8 +208,8 @@ export async function PATCH(
 
     const chapter = await db.chapter.update({
       where: {
-        id: params.chapterId,
-        courseId: params.courseId,
+        id: (await params).chapterId,
+        courseId: (await params).courseId,
       },
       data: {
         ...values,

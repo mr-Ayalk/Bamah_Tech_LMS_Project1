@@ -101,18 +101,31 @@ model UserProgress {
   @@unique([userId, chapterId])
 }
 
-model Purchase {
-  id String @id @default(uuid())
-  userId String
+// model Purchase {
+//   id String @id @default(uuid())
+//   userId String
 
-  courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+//   courseId String
+//   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// @@unique([userId,courseId])
+//   @@index([courseId])
+// }
+model Purchase {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
+  @@unique([userId, courseId], name: "userId_courseId") // ✅ ADD NAME HERE
 }
+
 
 model StripeCustomer {
   id String @id @default(uuid())
