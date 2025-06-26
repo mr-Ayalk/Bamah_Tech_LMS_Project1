@@ -3,10 +3,12 @@ import { Banner } from "@/components/banner";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { VideoPlayer } from "./_components/video-player";
-import { CourseEnrollButton } from "./_components/course-enroll-button";
+
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
 import { File } from "lucide-react";
+import { CourseEnrollButton } from "./_components/course-enroll-button";
+import { CourseProgressButton } from "./_components/course-progress-button";
 
 const ChapterIdPage =async ({params}:{params:{
     courseId:string; 
@@ -30,8 +32,13 @@ const ChapterIdPage =async ({params}:{params:{
 
         const isLocked =!chapter.isFree && !purchase;
         const completedOnEnd=!!purchase && !userProgress?.isCompleted;
+
+
+
+        
     return ( 
         <div className="">
+
           {userProgress?.isCompleted&&(
             <Banner
             variant="success"
@@ -64,20 +71,26 @@ const ChapterIdPage =async ({params}:{params:{
 
 
                 {purchase?(
-                  <div className="">
-                    {/* to do:progress button */}
-                  </div>
+                 <CourseProgressButton
+                 chapterId={(await params).chapterId}
+                 courseId={(await params).courseId}
+                 nextChapterId={nextChapter?.id}
+                 isCompleted={!!userProgress?.isCompleted}
+                 
+                 />
                 ):(
                   <CourseEnrollButton
                   courseId={(await params).courseId}
-                  price={course.price}
+                  price={course.price!}
                   />
                 )}
               </div>
               <Separator/>
-            </div>
+           <div className="">
             <Preview value={chapter.description!}/>
-          </div>
+           </div>
+            
+         
           {!!attachments.length &&(
             <>
             <Separator/>
@@ -96,13 +109,19 @@ const ChapterIdPage =async ({params}:{params:{
 
                 </a>
               ))}
+              
             </div>
+           
             </>
+           
+             
           )
 
           }
+            </div>
+          </div>
         </div>
      );
-}
+};
  
 export default ChapterIdPage;
