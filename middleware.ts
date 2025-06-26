@@ -4,6 +4,7 @@ const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
    '/test(.*)',       // ✅ this makes /test and its subroutes public
 '/api/uploadthing(.*)',
+"/api/webhook"
 
 ])
 

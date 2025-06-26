@@ -44,7 +44,7 @@ export const getChapter=async({
         let nextChapter:Chapter | null;
 
         if(purchase){
-            attachments=await db.attachments.findMany({
+            attachments=await db.attachment.findMany({
                 where:{
                     courseId:courseId
                 }
