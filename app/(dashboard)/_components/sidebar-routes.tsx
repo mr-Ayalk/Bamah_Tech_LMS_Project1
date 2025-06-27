@@ -12,9 +12,46 @@ import { Compass, Layout, MessageCircle,
   BarChart, } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
-
+import { isTeacher } from "@/lib/teacher";
+import { useAuth } from "@clerk/nextjs";
 
 const guestRoutes=[
+{
+    icon: Layout,
+    label: "Dashboard",
+    href: "/",
+},
+{
+    icon: Compass,
+    label: "Courses",
+    href: "/search",
+},
+{ icon: MessageCircle,
+     label: "Chat", 
+     href: "/chat" },
+      { icon: SearchCheck,
+        label: "Exam Results", 
+        href: "/results" },
+     {
+    icon: Award,
+    label: "Certifications",
+    href: "/certifications",
+  },
+  { icon: Trophy,
+     label: "Achievements",
+      href: "/achievements" },
+
+  { icon: HelpCircle,
+     label: "Support",
+      href: "/support" },
+       {
+    icon: Crown,
+    label: "Premium Features",
+    href: "/premium",
+  },
+  
+];
+const guestRouteswithaccess=[
 {
     icon: Layout,
     label: "Dashboard",
@@ -76,8 +113,11 @@ export const SidebarRoutes=()=>{
 
 
   const pathname=usePathname();
+  const {userId}=useAuth();
+  const guestRoutescheck=isTeacher(userId)? guestRouteswithaccess :guestRoutes;
   const isTeacherPage=pathname?.includes("/teacher");
-    const routes=isTeacherPage ? teacherRoutes:  guestRoutes;
+
+    const routes=isTeacherPage ? teacherRoutes:  guestRoutescheck;
     return(
         <div className="flex flex-col w-full">
            {routes.map((route)=>(
