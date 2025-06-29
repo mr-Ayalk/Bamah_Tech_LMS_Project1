@@ -18,7 +18,7 @@ const { data } =  await (await clerkClient()).users.getUserList({
 
 const user = data?.[0];
   const fullName = `${user?.firstName ?? ""} ${user?.lastName ?? ""}`;
-  const avatar = user?.imageUrl;
+ 
 
 
   return (

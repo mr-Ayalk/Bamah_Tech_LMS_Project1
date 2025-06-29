@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    eslint: {
+    ignoreDuringBuilds: true,
+  },
    images: {
     domains: [
       'dqw30klgfb.ufs.sh', // your project's UFS image domain

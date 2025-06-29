@@ -18,7 +18,7 @@ export default async function Dashboard() {
 
 const user = data?.[0];
   const fullName = `${user?.firstName ?? ""} ${user?.lastName ?? ""}`;
-  const avatar = user?.imageUrl;
+  
   const {completedCourses,coursesInProgress}=await getDashboardCourses(userId);
   return (
    
