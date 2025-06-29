@@ -9,10 +9,13 @@ import { Preview } from "@/components/preview";
 import { File } from "lucide-react";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { CourseProgressButton } from "./_components/course-progress-button";
-
-const ChapterIdPage =async ({params}:{params:{
-    courseId:string; 
-    chapterId:string}}) => {
+interface PageProps {
+  params: {
+    courseId: string;
+    chapterId: string;
+  };
+}
+const ChapterIdPage =async ({params}:PageProps) => {
         
 
         const {userId}=await auth();
