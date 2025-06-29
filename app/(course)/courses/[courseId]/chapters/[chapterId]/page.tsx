@@ -51,7 +51,8 @@ const ChapterIdPage =async ({params}:{params:{
             label="You need to purchase this course to watch this chapter."
             />
           )}
-          <div className="flex flex-col max-w-4xl mx-auto pb-20">
+          <div className="flex flex-col max-w-4xl mx-auto pb-20 ">
+              {/* <div className="aspect-video w-full max-h-[600px] overflow-hidden"> */}
             <div className="p-4">
                 <VideoPlayer
                 chapterId={(await params).chapterId}

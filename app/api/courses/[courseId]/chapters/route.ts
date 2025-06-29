@@ -41,7 +41,7 @@ export async function POST(
     const chapter = await db.chapter.create({
       data: {
         title,
-        courseId: params.courseId,
+        courseId: (await params).courseId,
         position: newPosition,
       },
     });
