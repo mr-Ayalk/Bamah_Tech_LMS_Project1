@@ -9,7 +9,7 @@ import { CoursesList } from "@/components/courses-list";
 interface SearchPageProps{
     searchParams:{
         title:string;
-        catagoryId:string;
+        categoryId: string;
     }
 }
 
@@ -30,7 +30,7 @@ const categories = await db.category.findMany({
 const courses=await getCourses({
 
     userId,
-    ...(await searchParams),
+    ... searchParams,
 
 }) 
 

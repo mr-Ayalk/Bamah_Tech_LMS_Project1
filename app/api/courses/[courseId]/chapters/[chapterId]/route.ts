@@ -99,11 +99,11 @@ const mux = new Mux({
 // }
 // }
 export async function DELETE(
-  req: Request,
-  context: { params: Promise<{ courseId: string; chapterId: string }> }
+   req :Request,
+  { params }: { params: { courseId: string; chapterId: string } }
 ) {
-  const { params } = context;
-  const resolvedParams = await params;
+ 
+  
 
   try {
     const { userId } = await auth();
@@ -114,7 +114,7 @@ export async function DELETE(
 
     const ownCourse = await db.course.findFirst({
       where: {
-        id: resolvedParams.courseId,
+        id: params.courseId,
         userId,
       },
     });
@@ -125,7 +125,7 @@ export async function DELETE(
 
     const chapter = await db.chapter.findUnique({
       where: {
-        id: resolvedParams.chapterId,
+        id: params.chapterId,
       },
     });
 
@@ -136,7 +136,7 @@ export async function DELETE(
     if (chapter.videoUrl) {
       const existingMuxData = await db.muxData.findFirst({
         where: {
-          chapterId: resolvedParams.chapterId,
+          chapterId: params.chapterId,
         },
       });
 
@@ -152,13 +152,13 @@ export async function DELETE(
 
     const deletedChapter = await db.chapter.delete({
       where: {
-        id: resolvedParams.chapterId,
+        id: params.chapterId,
       },
     });
 
     const publishedChaptersInCourse = await db.chapter.findMany({
       where: {
-        courseId: resolvedParams.courseId,
+        courseId: params.courseId,
         isPublished: true,
       },
     });
@@ -166,7 +166,7 @@ export async function DELETE(
     if (!publishedChaptersInCourse.length) {
       await db.course.update({
         where: {
-          id: resolvedParams.courseId,
+          id: params.courseId,
         },
         data: {
           isPublished: false,
@@ -208,8 +208,8 @@ export async function PATCH(
 
     const chapter = await db.chapter.update({
       where: {
-        id: (await params).chapterId,
-        courseId: (await params).courseId,
+        id: ( params).chapterId,
+        courseId: ( params).courseId,
       },
       data: {
         ...values,

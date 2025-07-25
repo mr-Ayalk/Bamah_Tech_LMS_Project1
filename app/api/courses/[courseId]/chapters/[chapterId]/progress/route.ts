@@ -18,7 +18,7 @@ export async function PUT(
             where:{
                 userId_chapterId:{
                     userId,
-                    chapterId:(await params).chapterId,
+                    chapterId:( params).chapterId,
 
                 }
             },update:{
@@ -26,7 +26,7 @@ export async function PUT(
             },
             create:{
                 userId,
-                  chapterId:(await params).chapterId,
+                  chapterId:( params).chapterId,
                   isCompleted,
             }
         }); 

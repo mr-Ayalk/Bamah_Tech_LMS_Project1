@@ -127,13 +127,8 @@ import { Actions } from "./_components/actions";
 // };
 
 // export default CourseIdPage;
-const CourseIdPage = async ({
-  params,
-}: {
-  params: Promise<{ courseId: string }>; // mark as Promise
-}) => {
-  const resolvedParams = await params; // await params here
-
+const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
+ 
   const { userId } = await auth();
 
   if (!userId) {
@@ -142,7 +137,7 @@ const CourseIdPage = async ({
 
   const course = await db.course.findUnique({
     where: {
-      id: resolvedParams.courseId, // use resolvedParams
+      id: params.courseId, // use params
       userId,
     },
     include: {
@@ -208,7 +203,7 @@ const isComplete = requiredFields.every(Boolean);
 <Actions
 
  disabled={!isComplete}
- courseId={(await params).courseId}
+ courseId={( params).courseId}
  isPublished={course.isPublished}
 />
 

@@ -15,19 +15,19 @@ import { ChapterActions } from "./_components/chapter-actions";
 const ChapterIdPage = async ({
   params,
 }: {
-  // params: { courseId: string; chapterId: string };
-  params: Promise<{ courseId: string; chapterId: string }>;
+  params: { courseId: string; chapterId: string };
+ 
 }) => {
   const { userId } = await auth();
 
   if (!userId) {
     return redirect("/");
   }
-const resolvedParams = await params;
+
   const chapter = await db.chapter.findUnique({
     where: {
-      id: resolvedParams.chapterId,
-      courseId: resolvedParams.courseId,
+      id: params.chapterId,
+      courseId: params.courseId,
     },
     include: {
       muxData: true,
@@ -58,7 +58,7 @@ const isCompleted = requiredFields.every(Boolean);
       <div className="flex items-center justify-between">
         <div className="w-full">
           <Link
-            href={`/teacher/courses/${resolvedParams.courseId}`}
+            href={`/teacher/courses/${params.courseId}`}
             className="flex items-center text-sm hover:opacity-75 transition mb-6"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -75,8 +75,8 @@ const isCompleted = requiredFields.every(Boolean);
 
 <ChapterActions
   disabled={!isCompleted}
-  courseId= {resolvedParams.courseId}
-   chapterId= {resolvedParams.chapterId}
+  courseId= {params.courseId}
+   chapterId= {params.chapterId}
    isPublished={chapter.isPublished}
 />
 
@@ -93,13 +93,13 @@ const isCompleted = requiredFields.every(Boolean);
             </div>
             <ChapterTitleForm
               initialData={chapter}
-              courseId={resolvedParams.courseId}
-              chapterId={resolvedParams.chapterId}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
             />
             <ChapterDescriptionForm
               initialData={chapter}
-              courseId={resolvedParams.courseId}
-              chapterId={resolvedParams.chapterId}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
             />
           </div>
           <div>
@@ -109,8 +109,8 @@ const isCompleted = requiredFields.every(Boolean);
             </div>
             <ChapterAccessForm
               initialData={chapter}
-              courseId={resolvedParams.courseId}
-              chapterId={resolvedParams.chapterId}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
             />
           </div>
         </div>
@@ -121,8 +121,8 @@ const isCompleted = requiredFields.every(Boolean);
           </div>
           <ChapterVideoForm
             initialData={chapter}
-            courseId={resolvedParams.courseId}
-            chapterId={resolvedParams.chapterId}
+            courseId={params.courseId}
+            chapterId={params.chapterId}
           />
         </div>
       </div>
