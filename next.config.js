@@ -13,12 +13,12 @@ const nextConfig = {
       "4po4i39ymo.ufs.sh", // often used by UploadThing for app URLs
     ],
   },
-  turbopack: {
-    rules: {
-      "*.md": ["ignore"],
-      "*.LICENSE": ["ignore"],
-    },
-  },
+  // turbopack: {
+  //   rules: {
+  //     "*.md": ["ignore"],
+  //     "*.LICENSE": ["ignore"],
+  //   },
+  // },
 };
 
 module.exports = nextConfig;
